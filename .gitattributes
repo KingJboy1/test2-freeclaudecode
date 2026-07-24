@@ -1,0 +1,2 @@
+# Keep POSIX shell scripts as LF so they run under dash/bash (CRLF breaks `set`/`if`).
+*.sh text eol=lf

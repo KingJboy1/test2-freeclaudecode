@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0c100e" />
+    <title>Free Claude Code — Admin</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='4' fill='%23f0865a'/%3E%3Ctext x='8' y='11.6' text-anchor='middle' fill='%230c100e' font-size='8.5' font-weight='bold' font-family='monospace'%3EFC%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="/admin/assets/admin.css" />
+  </head>
+  <body>
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">FC<span class="brand-beacon" aria-hidden="true"></span></div>
+          <div class="brand-text">
+            <h1>Free Claude Code</h1>
+            <p>Server Control</p>
+          </div>
+        </div>
+        <nav id="sectionNav" class="section-nav" aria-label="Admin views"></nav>
+        <div class="sidebar-footer">
+          <span>v4.12.0</span>
+          <span id="configStatus">Loading...</span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-left">
+            <h2 id="pageTitle">Providers</h2>
+            <span class="topbar-badge" id="viewBadge">config</span>
+          </div>
+          <div class="search-wrapper" id="searchWrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" id="searchInput" placeholder="Search providers..." aria-label="Search providers" />
+          </div>
+        </header>
+
+        <div id="adminViews" class="admin-views">
+          <section id="view-providers" class="admin-view active" data-view="providers">
+            <div class="provider-strip" aria-label="Provider status">
+              <div class="strip-header">
+                <h3>Providers</h3>
+                <span class="provider-count" id="providerCount">0 configured</span>
+              </div>
+              <div id="providerGrid" class="provider-grid"></div>
+              <div class="no-results" id="noResults">No providers match your search</div>
+            </div>
+            <div id="providersSections" class="form-sections" aria-label="Provider configuration"></div>
+          </section>
+
+          <section id="view-model_config" class="admin-view" data-view="model_config" hidden>
+            <div id="modelConfigSections" class="form-sections" aria-label="Model configuration"></div>
+          </section>
+
+          <section id="view-models" class="admin-view" data-view="models" hidden>
+            <div id="userModelsSections" class="form-sections" aria-label="User models"></div>
+          </section>
+
+          <section id="view-messaging" class="admin-view" data-view="messaging" hidden>
+            <div id="messagingSections" class="form-sections" aria-label="Messaging configuration"></div>
+          </section>
+        </div>
+
+        <div id="messageArea" class="message-area" role="alert"></div>
+
+        <div class="action-bar">
+          <div class="action-meta">
+            <strong id="dirtyState">No changes</strong>
+            <span>Config: <span id="configPath" class="config-path"></span></span>
+          </div>
+          <div class="action-buttons">
+            <span class="kbd-hint"><kbd>Ctrl</kbd>+<kbd>S</kbd> to apply</span>
+            <button id="validateButton" class="secondary-button">Validate</button>
+            <button id="applyButton" class="primary-button" disabled>Apply</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="/admin/assets/admin.js"></script>
+  </body>
+</html>
