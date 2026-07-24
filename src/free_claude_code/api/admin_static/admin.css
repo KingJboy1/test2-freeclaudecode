@@ -1,0 +1,223 @@
+/* Free Claude Code — Admin UI Styles */
+:root {
+  --bg: #0c100e;
+  --surface: #141a17;
+  --surface-2: #1c2420;
+  --border: #2a3530;
+  --text: #e8ede9;
+  --text-muted: #8a9a90;
+  --accent: #f0865a;
+  --accent-hover: #f5a07a;
+  --success: #4ade80;
+  --error: #f87171;
+  --warning: #fbbf24;
+  --radius: 8px;
+  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+.app-shell { display: flex; min-height: 100vh; }
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; padding: 0 20px 20px; }
+.brand-mark {
+  width: 36px; height: 36px;
+  background: var(--accent);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px; color: var(--bg);
+  position: relative;
+}
+.brand-beacon {
+  position: absolute; top: -2px; right: -2px;
+  width: 8px; height: 8px;
+  background: var(--success);
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+}
+.brand-text h1 { font-size: 15px; font-weight: 600; }
+.brand-text p { font-size: 11px; color: var(--text-muted); }
+
+.section-nav { flex: 1; padding: 0 8px; }
+.section-nav button, .section-nav a {
+  display: block; width: 100%;
+  padding: 8px 12px;
+  border: none; background: none;
+  color: var(--text-muted);
+  font-size: 13px; text-align: left;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.section-nav button:hover, .section-nav a:hover { background: var(--surface-2); color: var(--text); }
+.section-nav button.active, .section-nav a.active { background: var(--surface-2); color: var(--accent); }
+
+.sidebar-footer {
+  padding: 12px 20px 0;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between;
+  font-size: 11px; color: var(--text-muted);
+}
+
+/* Main */
+.main { flex: 1; margin-left: 240px; padding: 24px 32px; }
+
+.topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.topbar-left { display: flex; align-items: center; gap: 12px; }
+.topbar h2 { font-size: 20px; font-weight: 600; }
+.topbar-badge {
+  font-size: 11px; padding: 2px 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-muted);
+}
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.card h3 { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+
+/* Forms */
+label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+input, select, textarea {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: var(--mono);
+  outline: none;
+  transition: border-color 0.15s;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+input[type="password"] { letter-spacing: 2px; }
+
+.field-group { margin-bottom: 16px; }
+
+/* Buttons */
+button, .btn {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+button:hover, .btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+.btn-primary:hover { background: var(--accent-hover); }
+
+/* Status indicators */
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.online { background: var(--success); }
+.status-dot.offline { background: var(--error); }
+.status-dot.unknown { background: var(--text-muted); }
+
+/* Toast */
+.toast-container { position: fixed; top: 16px; right: 16px; z-index: 1000; display: flex; flex-direction: column; gap: 8px; }
+.toast {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  animation: slideIn 0.2s ease;
+}
+.toast.success { background: #065f46; color: #d1fae5; }
+.toast.error { background: #7f1d1d; color: #fecaca; }
+.toast.info { background: #1e3a5f; color: #bfdbfe; }
+
+@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+/* Search */
+.search-wrapper { position: relative; }
+.search-wrapper input { padding-left: 32px; width: 240px; }
+.search-wrapper svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; stroke: var(--text-muted); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar { width: 60px; }
+  .brand-text, .section-nav button span, .sidebar-footer { display: none; }
+  .main { margin-left: 60px; padding: 16px; }
+}
+
+/* Model combobox */
+.model-combobox { position: relative; }
+.model-combobox-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 240px;
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  z-index: 100;
+  list-style: none;
+}
+.model-combobox-list li {
+  padding: 8px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: var(--mono);
+}
+.model-combobox-list li:hover,
+.model-combobox-list li.highlighted {
+  background: var(--surface-2);
+  color: var(--accent);
+}
+.model-combobox-search {
+  width: 100%;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.model-combobox-option { padding: 8px 12px; font-size: 13px; cursor: pointer; }
+.model-combobox-option.active,
+.model-combobox-option:hover { background: var(--surface-2); color: var(--accent); }
+
+/* Dropdown chevron for select/combobox inputs */
+select,
+.model-combobox input {
+  background-image: var(--dropdown-chevron);
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  padding-right: 30px;
+  appearance: none;
+}
+.model-combobox-toggle {
+  background-image: var(--dropdown-chevron);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px;
+}
